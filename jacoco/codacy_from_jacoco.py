@@ -15,7 +15,7 @@ def convert(jacoco, prefix):
     lineCounterTotal = report.find('./counter[@type="LINE"]')
     coveredTotal = int(lineCounterTotal.get('covered'))
     missedTotal = int(lineCounterTotal.get('missed'))
-    codacy['total'] = int((coveredTotal / (coveredTotal + missedTotal)) * 100)
+    codacy['total'] = int(100 * coveredTotal / (coveredTotal + missedTotal))
 
     codacyFileReports = []
     for package in report.findall('./package'):
@@ -27,7 +27,7 @@ def convert(jacoco, prefix):
             sourcefileCounter = sourcefile.find('./counter[@type="LINE"]')
             sourcefileCounterCovered = int(sourcefileCounter.get('covered'))
             sourcefileCounterMissed = int(sourcefileCounter.get('missed'))
-            codacyFileReport['total'] = int((sourcefileCounterCovered / (sourcefileCounterCovered + sourcefileCounterMissed)) * 100)
+            codacyFileReport['total'] = int(100 * sourcefileCounterCovered / (sourcefileCounterCovered + sourcefileCounterMissed))
 
             codacyCoverage = {}
             for line in sourcefile.findall('line'):

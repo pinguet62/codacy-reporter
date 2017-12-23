@@ -1,0 +1,46 @@
+{
+  "total": 44,
+  "fileReports": [
+    {
+      "filename": "src/main/java/fr/pinguet62/codacy/First.java",
+      "total": 50,
+      "coverage": {
+        "6": 1,
+        "8": 1
+      }
+    },
+    {
+      "filename": "src/main/java/fr/pinguet62/codacy/Second.java",
+      "total": 33,
+      "coverage": {
+        "14": 1,
+        "6": 1,
+        "13": 1
+      }
+    },
+    {
+      "filename": "src/first.js",
+      "total": 75,
+      "coverage": {
+        "2": 1,
+        "3": 0,
+        "4": 1,
+        "7": 1
+      }
+    },
+    {
+      "filename": "src/second.js",
+      "total": 37,
+      "coverage": {
+        "2": 1,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "9": 1,
+        "12": 1
+      }
+    }
+  ]
+}

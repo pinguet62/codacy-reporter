@@ -1,8 +1,24 @@
 script:
+  # Generate original reports
+  - (cd jacoco/generator && mvn clean package)
+  - (cd lcov/generator && npm install && npm test)
+  # Convert to Codacy
+  - python jacoco/codacy_from_jacoco.py --prefix jacoco/generator/src/main/java/ jacoco/generator/target/site/jacoco/jacoco.xml > jacoco/generator/target/site/jacoco/codacy_travis.json
+  - python lcov/codacy_from_lcov.py --basedir . lcov/generator/coverage/lcov.info > lcov/generator/coverage/codacy_travis.json
+  # Merge to single
+  - python merge/codacy_merger.py jacoco/generator/target/site/jacoco/codacy_travis.json lcov/generator/coverage/codacy_travis.json > codacy_travis.json
+  # Send to Codacy
   - |
     curl -X POST \
       https://api.codacy.com/2.0/coverage/`git rev-parse HEAD`/java \
       -H "content-type: application/json" \
       -H "api_token: $CODACY_API_TOKEN" \
       -H "project_token: $CODACY_PROJECT_TOKEN" \
-      -d @jacoco/generator/target/site/jacoco/codacy.json
+      -d @codacy_travis.json
+  - |
+    curl -X POST \
+      https://api.codacy.com/2.0/coverage/`git rev-parse HEAD`/javascript \
+      -H "content-type: application/json" \
+      -H "api_token: $CODACY_API_TOKEN" \
+      -H "project_token: $CODACY_PROJECT_TOKEN" \
+      -d @codacy_travis.json
