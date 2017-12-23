@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "test": "nyc --reporter=lcov --reporter=html mocha"
+  },
+  "devDependencies": {
+    "nyc": "^11.2.1",
+    "mocha": "^3.5.3",
+    "codacy-coverage": "^2.0.3"
+  }
+}

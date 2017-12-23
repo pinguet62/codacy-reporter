@@ -1,0 +1,8 @@
+script:
+  - |
+    curl -X POST \
+      https://api.codacy.com/2.0/coverage/`git rev-parse HEAD`/java \
+      -H "content-type: application/json" \
+      -H "api_token: $CODACY_API_TOKEN" \
+      -H "project_token: $CODACY_PROJECT_TOKEN" \
+      -d @jacoco/generator/target/site/jacoco/codacy.json
