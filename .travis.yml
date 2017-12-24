@@ -1,12 +1,23 @@
-script:
+before_script:
   # Generate original reports
-  - (cd jacoco/generator && mvn clean package)
-  - (cd lcov/generator && npm install && npm test)
+  - (cd converter-jacoco/generator && mvn clean package)
+  - (cd converter-lcov/generator && npm install && npm test)
+  # Convert to Codacy (expected by tests)
+  - (cd converter-jacoco/generator && java -jar target/codacy-1.0-SNAPSHOT-jar-with-dependencies.jar --reportFile target/site/jacoco/jacoco.xml > target/site/jacoco/codacy.json)
+  - (cd converter-lcov/generator && node convert-lcov-to-codacy.js coverage/lcov.info > coverage/codacy.json)
+script:
+  - (cd converter-jacoco && python codacy_from_jacoco_test.py)
+  - (cd converter-lcov && python codacy_from_lcov_test.py)
+after_success:
   # Convert to Codacy
-  - python jacoco/codacy_from_jacoco.py --prefix jacoco/generator/src/main/java/ jacoco/generator/target/site/jacoco/jacoco.xml > jacoco/generator/target/site/jacoco/codacy_travis.json
-  - python lcov/codacy_from_lcov.py --basedir . lcov/generator/coverage/lcov.info > lcov/generator/coverage/codacy_travis.json
+  - python converter-jacoco/codacy_from_jacoco.py --prefix converter-jacoco/generator/src/main/java/ converter-jacoco/generator/target/site/jacoco/jacoco.xml > converter-jacoco/generator/target/site/jacoco/codacy_travis.json
+  - python converter-lcov/codacy_from_lcov.py --basedir . converter-lcov/generator/coverage/lcov.info > converter-lcov/generator/coverage/codacy_travis.json
   # Merge to single
-  - python merge/codacy_merger.py jacoco/generator/target/site/jacoco/codacy_travis.json lcov/generator/coverage/codacy_travis.json > codacy_travis.json
+  - |
+    python merger/codacy_merger.py \
+      converter-jacoco/generator/target/site/jacoco/codacy_travis.json \
+      converter-lcov/generator/coverage/codacy_travis.json \
+      > codacy_travis.json
   # Send to Codacy
   - |
     curl -X POST \

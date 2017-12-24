@@ -1,0 +1,24 @@
+{
+  "language" : "Java",
+  "total" : 31,
+  "fileReports" : [ {
+    "filename" : "src/main/java/fr/pinguet62/codacy/First.java",
+    "total" : 50,
+    "coverage" : {
+      "6" : 1,
+      "8" : 1
+    }
+  }, {
+    "filename" : "src/main/java/fr/pinguet62/codacy/ConvertJacocoToCodacy.java",
+    "total" : 0,
+    "coverage" : { }
+  }, {
+    "filename" : "src/main/java/fr/pinguet62/codacy/Second.java",
+    "total" : 33,
+    "coverage" : {
+      "14" : 1,
+      "6" : 1,
+      "13" : 1
+    }
+  } ]
+}
