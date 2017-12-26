@@ -25,21 +25,17 @@
             <artifactId>jcommander</artifactId>
             <version>1.72</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.2</version>
+        </dependency>
 
+        <!-- Used by "codacy-maven-plugin" -->
         <dependency>
             <groupId>com.codacy</groupId>
-            <artifactId>codacy-api-scala_2.11</artifactId>
-            <version>1.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.codacy</groupId>
-            <artifactId>coverage-parser_2.11</artifactId>
-            <version>1.1.4</version>
-        </dependency>
-        <dependency>
-            <groupId>com.typesafe.play</groupId>
-            <artifactId>play-json_2.11</artifactId>
-            <version>2.3.9</version>
+            <artifactId>coverage-parser_2.12</artifactId>
+            <version>2.0.2</version>
         </dependency>
     </dependencies>
 
@@ -65,7 +61,7 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <exclude>fr/pinguet62/codacy/ConvertJacocoToCodacy.class</exclude>
+                        <exclude>fr/pinguet62/codacy/ConvertJacocoToCodacy**.class</exclude>
                     </excludes>
                 </configuration>
             </plugin>

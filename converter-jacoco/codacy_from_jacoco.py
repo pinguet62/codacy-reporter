@@ -10,7 +10,7 @@ def convert(jacoco, prefix):
 
     codacy = {}
 
-    codacy['language'] = 'Java'
+    # codacy['language'] = 'Java'
 
     lineCounterTotal = report.find('./counter[@type="LINE"]')
     coveredTotal = int(lineCounterTotal.get('covered'))
@@ -34,9 +34,7 @@ def convert(jacoco, prefix):
                 lineMissedInstructions = int(line.get('mi'))
                 lineCoveredInstructions = int(line.get('ci'))
                 if lineMissedInstructions + lineCoveredInstructions > 0:
-                    covered = 0 if lineCoveredInstructions == 0 else 1
-                    if covered == 1:
-                        codacyCoverage[line.get('nr')] = covered
+                    codacyCoverage[line.get('nr')] = 0 if lineCoveredInstructions == 0 else 1
             codacyFileReport['coverage'] = codacyCoverage
 
             codacyFileReports.append(codacyFileReport)

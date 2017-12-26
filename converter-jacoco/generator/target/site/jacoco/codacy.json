@@ -1,24 +1,30 @@
 {
-  "language" : "Java",
-  "total" : 31,
-  "fileReports" : [ {
-    "filename" : "src/main/java/fr/pinguet62/codacy/First.java",
-    "total" : 50,
-    "coverage" : {
-      "6" : 1,
-      "8" : 1
+  "total": 38,
+  "fileReports": [
+    {
+      "filename": "src/main/java/fr/pinguet62/codacy/First.java",
+      "total": 50,
+      "coverage": {
+        "3": 0,
+        "6": 1,
+        "7": 0,
+        "8": 1
+      }
+    },
+    {
+      "filename": "src/main/java/fr/pinguet62/codacy/Second.java",
+      "total": 33,
+      "coverage": {
+        "3": 0,
+        "6": 1,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 0,
+        "13": 1,
+        "14": 1
+      }
     }
-  }, {
-    "filename" : "src/main/java/fr/pinguet62/codacy/ConvertJacocoToCodacy.java",
-    "total" : 0,
-    "coverage" : { }
-  }, {
-    "filename" : "src/main/java/fr/pinguet62/codacy/Second.java",
-    "total" : 33,
-    "coverage" : {
-      "14" : 1,
-      "6" : 1,
-      "13" : 1
-    }
-  } ]
+  ]
 }
